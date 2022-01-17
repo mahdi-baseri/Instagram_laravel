@@ -23,9 +23,18 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex " href="{{ url('/') }}">
-                    <div><img src="/img/instagram.png" class="pe-3" style="height: 25px; border-right: 1px solid black"></div>
-                    <div class="ps-3">Bsr_web</div>
+                <div><img src="/img/instagram.png" class="pe-3" style="height: 25px; border-right: 1px solid black"></div>
+                @guest
+                @if (Route::has('login'))
+                            <a class="navbar-brand d-flex " href="#">
+                            <div class="ps-3">Bsr_web</div>
+                        @endif
+                        @else
+                                <a class="navbar-brand d-flex " href="/profile/{{auth()->user()->id}}">
+                                <div class="ps-3">{{auth()->user()->username}}</div>
+                        @endguest
+
+
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
